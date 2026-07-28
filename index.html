@@ -189,7 +189,8 @@ section{ position:relative; }
 .hero p.lead{ font-size:1.06rem; color:var(--ink-soft); max-width:46ch; margin-bottom:32px; }
 .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
 
-.seal-wrap{ display:flex; justify-content:center; align-items:center; position:relative; }
+.seal-wrap{ display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; gap:16px; }
+.seal-wrap h5{ font-family:var(--body); font-size:0.95rem; line-height:1.4; text-align:center; color:var(--ink-soft); max-width:360px; }
 .seal-wrap svg{ width:100%; max-width:340px; height:auto; }
 .seal-ring{ stroke-dasharray: 900; stroke-dashoffset:900; animation: drawSeal 2.4s cubic-bezier(.22,.61,.36,1) .3s forwards; }
 .seal-inner{ stroke-dasharray: 400; stroke-dashoffset:400; animation: drawSeal 1.8s cubic-bezier(.22,.61,.36,1) 1s forwards; }
@@ -326,6 +327,14 @@ footer ul li a:hover{ color:var(--marigold); }
 /* ============ COMMITTEE PAGE ============ */
 .committee-block{ padding:70px 0 90px; }
 .committee-group{ margin-bottom:56px; }
+.blog-grid{ display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:24px; }
+.blog-card{ background:var(--paper-3); border:1px solid var(--line); border-radius:var(--radius); padding:28px 24px; transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s ease; }
+.blog-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+.blog-meta{ font-family:var(--mono); font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--marigold-deep); margin-bottom:12px; }
+.blog-card h3{ font-size:1.18rem; margin-bottom:10px; }
+.blog-card p{ color:var(--ink-soft); font-size:0.95rem; }
+.blog-link{ display:inline-block; margin-top:14px; font-family:var(--mono); font-size:0.74rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink); font-weight:600; }
+@media (max-width:760px){ .blog-grid{ grid-template-columns:1fr; } }
 .committee-group h3{
   font-family:var(--mono); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;
   color:var(--ink-soft); padding-bottom:14px; border-bottom:1px solid var(--line-strong); margin-bottom:28px;
@@ -458,7 +467,7 @@ footer ul li a:hover{ color:var(--marigold); }
       <a href="#home" data-link>Home</a>
       <a href="#about" data-link>About</a>
       <a href="#committee" data-link>Committee</a>
-      <a href="#team" data-link>Team</a>
+      <a href="#team" data-link>Blogs</a>
       <a href="#gallery" data-link>Gallery</a>
       <a href="#contact" data-link>Contact</a>
     </div>
@@ -479,6 +488,8 @@ footer ul li a:hover{ color:var(--marigold); }
         </div>
       </div>
       <div class="seal-wrap reveal in-view">
+        <h3 style="font-weight: 700; color:black; text-align:center; display:block;">Andhra Pradesh Schools & Technical &  Professional <br> Institutions Employees Association</h3>
+        <h5 style="margin-top:4px; color:var(--marigold-deep); font-weight:700; text-align:center; display:block;">(APSTPIEA)</h5>
         <img src="images/Apstepiea-logo.jpeg" alt="APSTPIEA logo" style="max-width:400px; width:100%; height:auto; border-radius:16px; box-shadow:0 20px 45px rgba(16,40,66,0.18);">
       </div>
     </div>
@@ -650,35 +661,42 @@ footer ul li a:hover{ color:var(--marigold); }
   </section>
 </main>
 
-<!-- ============ Team ============ -->
+<!-- ============ BLOGS ============ -->
 <main id="team" class="page">
   <section class="page-hero wrap">
-    <p class="eyebrow">Governance</p>
-    <h1>The Team</h1>
-    <p>Elected representatives who carry members' concerns to the Department of Technical Education and steer the association's programs across districts.</p>
+    <p class="eyebrow">Insights</p>
+    <h1>Blogs</h1>
+    <p>Read the latest updates, member stories, and advocacy notes from APSTPIEA.</p>
   </section>
 
   <section class="committee-block wrap">
-    <p class="committee-note reveal">Names, designations and photographs below are placeholders — swap in your committee's real details and portraits to make this page ready to publish.</p>
+    <p class="committee-note reveal">Fresh perspectives and updates from our members, committees, and programs.</p>
 
-    <div class="committee-group">
-      <h3>Executive Committee</h3>
-      <div class="committee-grid reveal-stagger">
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">VR</div></div><div class="m-name">Dr. K. Venkata Ramana</div><div class="m-role">President</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">LD</div></div><div class="m-name">Smt. P. Lakshmi Devi</div><div class="m-role">Vice President</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">SR</div></div><div class="m-name">Sri M. Srinivasa Rao</div><div class="m-role">General Secretary</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">AK</div></div><div class="m-name">Smt. B. Anitha Kumari</div><div class="m-role">Joint Secretary</div></div>
-      </div>
-    </div>
-
-    <div class="committee-group">
-      <h3>Office Bearers</h3>
-      <div class="committee-grid reveal-stagger">
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">NB</div></div><div class="m-name">Sri T. Nagesh Babu</div><div class="m-role">Treasurer</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">RR</div></div><div class="m-name">Sri G. Ravindra Reddy</div><div class="m-role">Organizing Secretary</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">YP</div></div><div class="m-name">Smt. Y. Padmavathi</div><div class="m-role">District Secretary, Krishna</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">SK</div></div><div class="m-name">Sri D. Suresh Kumar</div><div class="m-role">District Secretary, Visakhapatnam</div></div>
-      </div>
+    <div class="blog-grid reveal-stagger">
+      <article class="blog-card">
+        <p class="blog-meta">APTPIEA seeks • 09 nov 2025</p>
+        <h3>APTPIEA seeks release of pending fee reimbursement funds in Andhra Pradesh</h3>
+        <p>The association is urging the government to clear pending fee reimbursement funds, highlighting the impact on institutions and students across the state.</p>
+        <a href="https://www.thehindu.com/news/national/andhra-pradesh/aptpiea-seeks-release-of-pending-fee-reimbursement-funds-in-andhra-pradesh/article70259533.ece" target="_blank" rel="noopener noreferrer" class="blog-link">Read more</a>
+      </article>
+      <article class="blog-card">
+        <p class="blog-meta">Employees Story • 29 may 2025</p>
+        <h3>Employees’ body seeks AICTE probe into ‘irregularities’ in some engineering colleges in A.P</h3>
+        <p>Alleging fraudulent, unethical practices in online and distance learning programmes, placement claims and PhD programmes by the institutions, APTPIEA leaders also seek a re-inspection of the colleges that were granted autonomy under JNTU-Kakinada</p>
+        <a href="https://www.thehindu.com/news/national/andhra-pradesh/employees-body-seeks-aicte-probe-into-irregularities-in-some-engineering-colleges-in-ap/article69633230.ece" target="_blank" rel="noopener noreferrer" class="blog-link">Read more</a>
+      </article>
+      <article class="blog-card">
+        <p class="blog-meta">Association News • 17 feb 2025</p>
+        <h3>Demand for probe into charges of corruption to get NAAC ranking</h3>
+        <p>President of Andhra Pradesh Technical and Professional Institutions Employees Association (APTPIEA) Dr MV Brahmananda Reddy said recently allegations surfaced regarding corruption in the process of ...</p>
+        <a href="https://www.thehansindia.com/andhra-pradesh/demand-for-probe-into-charges-of-corruption-to-get-naac-ranking-946383" class="blog-link">Read more</a>
+      </article>
+      <article class="blog-card">
+        <p class="blog-meta">Voices from the Field • 2 Jul 2026</p>
+        <h3>NAAC urged to take strigent actions against erring engineering colleges in Andhra Pradesh</h3>
+        <p>Alleging gross violation of norms by certain engineering colleges, members of Andhra Pradesh Technical and Professional Institutional Employees Association (APTPIEA) have appealed to the National ...</p>
+        <a href="https://www.thehindu.com/news/national/andhra-pradesh/naac-urged-to-take-strigent-actions-against-erring-engineering-colleges-in-andhra-pradesh/article69220026.ece" target="_blank" rel="noopener noreferrer" class="blog-link">Read more</a>
+      </article>
     </div>
   </section>
 </main>
@@ -764,7 +782,7 @@ footer ul li a:hover{ color:var(--marigold); }
           <li><a href="#home" data-link>Home</a></li>
           <li><a href="#about" data-link>About</a></li>
           <li><a href="#committee" data-link>Committee</a></li>
-          <li><a href="#team" data-link>Team</a></li>
+          <li><a href="#team" data-link>Blogs</a></li>
           <li><a href="#gallery" data-link>Gallery</a></li>
         </ul>
       </div>
@@ -785,7 +803,7 @@ footer ul li a:hover{ color:var(--marigold); }
         <div class="socials" style="margin-top:16px;">
           <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
           <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></a>
+          <a href="https://www.youtube.com/@aptpieayoutubechannel3607" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M10 9l5 3-5 3z"/></svg></a>
         </div>
       </div>
     </div>
