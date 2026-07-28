@@ -344,20 +344,23 @@ footer ul li a:hover{ color:var(--marigold); }
   background:var(--paper-3); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
   transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s ease;
   text-align:center; padding:28px 18px 22px;
+  display:flex; flex-direction:column; align-items:center; gap:14px;
 }
 .member-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
 .avatar-ring{
-  width:88px; height:88px; margin:0 auto 18px; border-radius:50%;
-  border:1.5px dashed var(--line-strong); display:flex; align-items:center; justify-content:center; position:relative;
+  width:112px; height:112px; margin:0; border-radius:50%;
+  border:1.5px dashed var(--line-strong); display:flex; align-items:center; justify-content:center; padding:4px;
   transition:border-color .3s ease;
 }
 .member-card:hover .avatar-ring{ border-color:var(--marigold); }
 .avatar-core{
-  width:70px; height:70px; border-radius:50%; background:var(--ink); color:var(--paper);
+  width:100%; height:100%; border-radius:50%; background:var(--ink); color:var(--paper);
   display:flex; align-items:center; justify-content:center;
-  font-family:var(--display); font-size:1.3rem; font-weight:600;
+  font-family:var(--display); font-size:1.3rem; font-weight:600; overflow:hidden;
 }
-.member-card .m-name{ font-family:var(--display); font-size:1.02rem; font-weight:600; margin-bottom:4px; }
+.avatar-core img{ width:100%; height:100%; object-fit:cover; display:block; }
+.member-card .member-info{ display:flex; flex-direction:column; align-items:center; gap:4px; }
+.member-card .m-name{ font-family:var(--display); font-size:1.02rem; font-weight:600; margin-bottom:0; }
 .member-card .m-role{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--marigold-deep); }
 @media (max-width:960px){ .committee-grid{ grid-template-columns:repeat(2,1fr);} }
 @media (max-width:560px){ .committee-grid{ grid-template-columns:1fr 1fr; gap:14px;} .member-card{ padding:20px 10px 16px;} }
@@ -642,20 +645,44 @@ footer ul li a:hover{ color:var(--marigold); }
     <div class="committee-group">
       <h3>Executive Committee</h3>
       <div class="committee-grid reveal-stagger">
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">VR</div></div><div class="m-name">Dr. K. Venkata Ramana</div><div class="m-role">President</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">LD</div></div><div class="m-name">Smt. P. Lakshmi Devi</div><div class="m-role">Vice President</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">SR</div></div><div class="m-name">Sri M. Srinivasa Rao</div><div class="m-role">General Secretary</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">AK</div></div><div class="m-name">Smt. B. Anitha Kumari</div><div class="m-role">Joint Secretary</div></div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/image1-reddy.jpeg" alt="Dr. M. V. Brahmananda Reddy"></div></div>
+          <div class="member-info"><div class="m-name">Dr. M. V. Brahmananda Reddy</div><div class="m-role">President</div></div>
+        </div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/image2-reddy2.jpeg" alt="Smt. P. Lakshmi Devi"></div></div>
+          <div class="member-info"><div class="m-name">Smt. P. Lakshmi Devi</div><div class="m-role">Vice President</div></div>
+        </div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/Riyaz Ahamed.jpeg" alt="Sri M. Srinivasa Rao"></div></div>
+          <div class="member-info"><div class="m-name">Sri M. Srinivasa Rao</div><div class="m-role">General Secretary</div></div>
+        </div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.09 PM.jpeg" alt="Smt. B. Anitha Kumari"></div></div>
+          <div class="member-info"><div class="m-name">Smt. B. Anitha Kumari</div><div class="m-role">Joint Secretary</div></div>
+        </div>
       </div>
     </div>
 
     <div class="committee-group">
       <h3>Office Bearers</h3>
       <div class="committee-grid reveal-stagger">
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">NB</div></div><div class="m-name">Sri T. Nagesh Babu</div><div class="m-role">Treasurer</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">RR</div></div><div class="m-name">Sri G. Ravindra Reddy</div><div class="m-role">Organizing Secretary</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">YP</div></div><div class="m-name">Smt. Y. Padmavathi</div><div class="m-role">District Secretary, Krishna</div></div>
-        <div class="member-card"><div class="avatar-ring"><div class="avatar-core">SK</div></div><div class="m-name">Sri D. Suresh Kumar</div><div class="m-role">District Secretary, Visakhapatnam</div></div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.08 PM.jpeg" alt="Sri T. Nagesh Babu"></div></div>
+          <div class="member-info"><div class="m-name">Sri T. Nagesh Babu</div><div class="m-role">Treasurer</div></div>
+        </div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.12 PM.jpeg" alt="Sri G. Ravindra Reddy"></div></div>
+          <div class="member-info"><div class="m-name">Sri G. Ravindra Reddy</div><div class="m-role">Organizing Secretary</div></div>
+        </div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.14 PM.jpeg" alt="Smt. Y. Padmavathi"></div></div>
+          <div class="member-info"><div class="m-name">Smt. Y. Padmavathi</div><div class="m-role">District Secretary, Krishna</div></div>
+        </div>
+        <div class="member-card">
+          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.15 PM.jpeg" alt="Sri D. Suresh Kumar"></div></div>
+          <div class="member-info"><div class="m-name">Sri D. Suresh Kumar</div><div class="m-role">District Secretary, Visakhapatnam</div></div>
+        </div>
       </div>
     </div>
   </section>
