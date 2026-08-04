@@ -6,6 +6,7 @@
 <title>APSTPIEA — Andhra Pradesh Schools & Technical and Professional Institutions Employees Association</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" type="image/png" href="images/favicon.jpeg">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============ TOKENS ============ */
@@ -19,7 +20,7 @@
   --paper-3:#F7F8F5;
   --marigold:#E2972C;
   --marigold-deep:#B9750F;
-  --vermillion:#B23B2E;
+  --vermillion:#330601;
   --line: rgba(16,40,66,0.14);
   --line-strong: rgba(16,40,66,0.28);
   --shadow: 0 20px 50px -25px rgba(16,40,66,0.45);
@@ -88,14 +89,14 @@ section{ position:relative; }
 }
 .brand{ display:flex; align-items:center; gap:12px; }
 .brand svg{ width:42px; height:42px; flex-shrink:0; }
-.brand-text{ line-height:1.15; }
+.brand-text{ line-height:1.15; display:flex; flex-direction:column; gap:4px; max-width:320px; }
 .brand-text .name{
-  font-family:var(--mono); font-weight:600; font-size:0.86rem;
+  font-family:var(--mono); font-weight:600; font-size:0.78rem;
   letter-spacing:0.06em; color:var(--ink);
 }
 .brand-text .sub{
-  font-family:var(--display); font-style:italic; font-size:0.78rem;
-  color:var(--ink-soft);
+  font-family:var(--display); font-style:italic; font-size:0.72rem;
+  color:var(--ink-soft); line-height:1.3;
 }
 .nav-links{ display:flex; gap:6px; align-items:center; }
 .nav-links a{
@@ -115,30 +116,48 @@ section{ position:relative; }
 .nav-links a.active::after{ transform:scaleX(1); }
 
 .nav-toggle{
-  display:none; width:38px; height:38px; border:1px solid var(--line-strong);
-  background:transparent; border-radius:3px; position:relative;
-}
-.nav-toggle span, .nav-toggle span::before, .nav-toggle span::after{
-  content:""; position:absolute; left:9px; right:9px; height:2px; background:var(--ink);
-  transition: transform .25s ease, opacity .25s ease;
-}
-.nav-toggle span{ top:18px; }
-.nav-toggle span::before{ top:-7px; }
-.nav-toggle span::after{ top:7px; }
+  display:none; width:44px; height:44px; border:1px solid var(--line-strong);
+  background: linear-gradient(135deg, rgba(51,6,1,0.02), rgba(226,151,44,0.02));
+  border-radius:10px; position:relative;
+  padding:0; transition: transform .18s ease, box-shadow .18s ease, background .18s ease; box-shadow:0 6px 16px rgba(16,40,66,0.06);
+ }
+.nav-toggle span{ position:relative; display:block; width:18px; height:2px; background:var(--ink); border-radius:2px; transition: all .25s ease; }
+.nav-toggle span::before, .nav-toggle span::after{ content:""; position:absolute; left:0; right:0; height:2px; background:inherit; border-radius:2px; transition: transform .25s ease, opacity .25s ease; }
+.nav-toggle span::before{ top:-6px; }
+.nav-toggle span::after{ top:6px; }
 .nav-toggle.open span{ background:transparent; }
-.nav-toggle.open span::before{ transform:translateY(7px) rotate(45deg); }
-.nav-toggle.open span::after{ transform:translateY(-7px) rotate(-45deg); }
+.nav-toggle.open span::before{ transform:translateY(6px) rotate(45deg); background:#fff; }
+.nav-toggle.open span::after{ transform:translateY(-6px) rotate(-45deg); background:#fff; }
+.nav-toggle:focus-visible{ outline:3px solid rgba(226,151,44,0.18); outline-offset:4px; }
 
-@media (max-width:860px){
+/* accessible helper */
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+@media (max-width:760px){
   .nav-links{
-    position:fixed; top:73px; left:0; right:0; bottom:0;
+    position:fixed; top:73px; right:0; width:min(82vw, 320px); height:calc(100vh - 73px);
     background:var(--paper-3); flex-direction:column; align-items:flex-start;
-    padding:20px 32px; gap:2px; transform:translateX(100%);
-    transition:transform .35s cubic-bezier(.4,0,.2,1); border-top:1px solid var(--line);
+    padding:20px 24px; gap:2px; transform:translateX(100%);
+    transition:transform .35s cubic-bezier(.4,0,.2,1), opacity .25s ease;
+    transform:translateX(110%); opacity:0; pointer-events:none;
+    border-left:1px solid var(--line);
+    box-shadow:-12px 0 30px rgba(16,40,66,0.12);
+    z-index:101; overflow-y:auto;
   }
-  .nav-links.open{ transform:translateX(0); }
+  .nav-links.open{ transform:translateX(0); opacity:1; pointer-events:auto; }
   .nav-links a{ width:100%; padding:16px 4px; font-size:0.95rem; border-bottom:1px solid var(--line); }
-  .nav-toggle{ display:block; }
+  .nav-toggle{ display:flex; align-items:center; justify-content:center; }
+
+  /* Improve text wrapping and spacing on narrow screens */
+  .nav-inner{ padding:12px 16px; }
+  .brand{ gap:8px; }
+  .brand-text{ max-width:180px; overflow-wrap:break-word; }
+  /* hide the very long full name on small screens and keep the short label */
+  .brand-text .name{ display:none; }
+  .brand-text .sub{ display:block; font-size:0.9rem; font-weight:700; color:var(--ink); }
+
+  /* allow headings and leads to break gracefully */
+  .hero h1, .hero p.lead, .section-head h2, .section-head p{ word-break:break-word; hyphens:auto; }
 }
 
 /* ============ PAGES / ROUTING ============ */
@@ -288,12 +307,12 @@ footer ul li a:hover{ color:var(--marigold); }
 .socials a{ width:36px; height:36px; border:1px solid rgba(238,241,236,0.25); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:all .3s ease; }
 .socials a:hover{ background:var(--marigold); border-color:var(--marigold); transform:translateY(-3px); }
 .socials svg{ width:15px; height:15px; }
-@media (max-width:860px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+@media (max-width:860px){ .footer-grid{ grid-template-columns:1fr 1fr 1fr; } }
 
 /* ============ ABOUT PAGE ============ */
 .page-hero{ padding:64px 0 40px; border-bottom:1px solid var(--line); }
-.page-hero h1{ font-size:clamp(2rem,4vw,2.9rem); }
-.page-hero p{ color:var(--ink-soft); max-width:60ch; margin-top:16px; }
+.page-hero h1{ font-size:clamp(2.2rem,4vw,3.2rem); line-height:1.08; margin-bottom:10px; }
+.page-hero p{ color:var(--ink-soft); max-width:70ch; margin-top:16px; font-size:1rem; }
 
 .about-block{ padding:70px 0; }
 .about-cols{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:start; }
@@ -339,31 +358,32 @@ footer ul li a:hover{ color:var(--marigold); }
   font-family:var(--mono); font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase;
   color:var(--ink-soft); padding-bottom:14px; border-bottom:1px solid var(--line-strong); margin-bottom:28px;
 }
-.committee-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.committee-grid{ display:grid; grid-template-columns:repeat(5, minmax(0, 1fr)); gap:20px; }
 .member-card{
-  background:var(--paper-3); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;
+  background:var(--paper-3); border:1px solid var(--line); border-radius:12px; overflow:hidden;
   transition: transform .35s cubic-bezier(.4,0,.2,1), box-shadow .35s ease;
-  text-align:center; padding:28px 18px 22px;
-  display:flex; flex-direction:column; align-items:center; gap:14px;
+  text-align:center; padding:20px 14px 18px;
+  box-shadow:0 8px 24px -16px rgba(16,40,66,0.25);
 }
 .member-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
-.avatar-ring{
-  width:112px; height:112px; margin:0; border-radius:50%;
-  border:1.5px dashed var(--line-strong); display:flex; align-items:center; justify-content:center; padding:4px;
-  transition:border-color .3s ease;
+.member-photo{
+  width:100%; aspect-ratio:1 / 1.08; margin:0 auto 14px; border-radius:10px; overflow:hidden;
+  background:var(--paper-3); border:1px solid var(--line);
 }
-.member-card:hover .avatar-ring{ border-color:var(--marigold); }
-.avatar-core{
-  width:100%; height:100%; border-radius:50%; background:var(--ink); color:var(--paper);
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--display); font-size:1.3rem; font-weight:600; overflow:hidden;
+.member-photo img{
+  width:100%; height:100%; object-fit:cover; display:block;
 }
-.avatar-core img{ width:100%; height:100%; object-fit:cover; display:block; }
-.member-card .member-info{ display:flex; flex-direction:column; align-items:center; gap:4px; }
-.member-card .m-name{ font-family:var(--display); font-size:1.02rem; font-weight:600; margin-bottom:0; }
-.member-card .m-role{ font-family:var(--mono); font-size:0.7rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--marigold-deep); }
-@media (max-width:960px){ .committee-grid{ grid-template-columns:repeat(2,1fr);} }
-@media (max-width:560px){ .committee-grid{ grid-template-columns:1fr 1fr; gap:14px;} .member-card{ padding:20px 10px 16px;} }
+.member-card .m-name{ font-family:var(--display); font-size:1rem; font-weight:600; margin-bottom:4px; }
+.member-card .m-role{ font-family:var(--mono); font-size:0.68rem; letter-spacing:0.05em; text-transform:uppercase; color:var(--marigold-deep); line-height:1.5; }
+@media (max-width:1200px){ .committee-grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+@media (max-width:760px){ .committee-grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); gap:16px; } }
+@media (max-width:480px){
+  .committee-grid{ grid-template-columns:1fr; gap:14px; }
+  .member-card{ padding:14px 12px; text-align:left; }
+  .member-photo{ width:min(88%, 220px); aspect-ratio:1 / 1.08; margin:0 0 12px; border-radius:10px; }
+  .member-card .m-name{ font-size:0.96rem; }
+  .member-card .m-role{ font-size:0.64rem; }
+}
 
 .committee-note{
   margin-top:8px; margin-bottom:44px; padding:16px 20px; border-left:2px solid var(--marigold-deep);
@@ -461,11 +481,11 @@ footer ul li a:hover{ color:var(--marigold); }
     <a href="#home" class="brand" data-link>
       <img src="images/Apstepiea-logo.jpeg" alt="APSTPIEA logo" style="width:48px;height:48px;object-fit:cover;border-radius:50%;border:2px solid rgba(16,40,66,0.12);">
       <span class="brand-text">
-        <span class="name">APSTPIEA</span><br>
-        <span class="sub">Andhra Pradesh</span>
+        <span class="name">Andhra Pradesh Schools, Technical and Professional Institutions Employees Association</span>
+        <span class="sub">APSTPIEA</span>
       </span>
     </a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation"><span></span></button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span class="sr-only">Menu</span></button>
     <div class="nav-links" id="navLinks">
       <a href="#home" data-link>Home</a>
       <a href="#about" data-link>About</a>
@@ -633,10 +653,10 @@ footer ul li a:hover{ color:var(--marigold); }
 
 <!-- ============ COMMITTEE ============ -->
 <main id="committee" class="page">
-  <section class="page-hero wrap">
+  <section class="page-hero wrap" style="padding-top:72px; padding-bottom:48px;">
     <p class="eyebrow">Governance</p>
-    <h1>The committee</h1>
-    <p>Elected representatives who carry members' concerns to the Department of Technical Education and steer the association's programs across districts.</p>
+    <h1 style="font-size:clamp(2.2rem,4.2vw,3.2rem); letter-spacing:0.01em; line-height:1.05; margin-bottom:14px;">Andhra Pradesh Schools and Technical and Professional Institutions Employees Association</h1>
+    <p style="font-size:1.02rem; max-width:78ch;">Elected representatives who carry members' concerns to the Department of Technical Education and steer the association's programs across districts.</p>
   </section>
 
   <section class="committee-block wrap">
@@ -645,45 +665,17 @@ footer ul li a:hover{ color:var(--marigold); }
     <div class="committee-group">
       <h3>Executive Committee</h3>
       <div class="committee-grid reveal-stagger">
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/image1-reddy.jpeg" alt="Dr. M. V. Brahmananda Reddy"></div></div>
-          <div class="member-info"><div class="m-name">Dr. M. V. Brahmananda Reddy</div><div class="m-role">President</div></div>
-        </div>
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/image2-reddy2.jpeg" alt="Smt. P. Lakshmi Devi"></div></div>
-          <div class="member-info"><div class="m-name">Smt. P. Lakshmi Devi</div><div class="m-role">Vice President</div></div>
-        </div>
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/Riyaz Ahamed.jpeg" alt="Sri M. Srinivasa Rao"></div></div>
-          <div class="member-info"><div class="m-name">Sri M. Srinivasa Rao</div><div class="m-role">General Secretary</div></div>
-        </div>
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.09 PM.jpeg" alt="Smt. B. Anitha Kumari"></div></div>
-          <div class="member-info"><div class="m-name">Smt. B. Anitha Kumari</div><div class="m-role">Joint Secretary</div></div>
-        </div>
+        <div class="member-card"><div class="member-photo"><img src="images/president.jpeg" alt="Dr. M V Bramhananda Reddy"></div><div class="m-name">Dr. M V Bramhananda Reddy</div><div class="m-role">President & Founder</div></div>
+        <div class="member-card"><div class="member-photo"><img src="images/riyaz.jpeg" alt="Dr S M D Riyaz"></div><div class="m-name">Dr. S.M.D. Riyaz</div><div class="m-role">General secretary</div></div>
+        <div class="member-card"><div class="member-photo"><img src="images/vice-president.jpeg" alt="Dr. C V S Rama Kishore"></div><div class="m-name">Dr. C V S Rama Kishore</div><div class="m-role">Vice President</div></div>
+        <div class="member-card"><div class="member-photo"><img src="images/executive-member.jpeg" alt="G Nagendra"></div><div class="m-name">G Nagendra</div><div class="m-role">Executive Member</div></div>
+        <div class="member-card"><div class="member-photo"><img src="images/executive-member2.jpeg" alt="M S Muralidhar Reddy"></div><div class="m-name">M S Muralidhar Reddy</div><div class="m-role">Executive Member</div></div>
       </div>
     </div>
 
-    <div class="committee-group">
-      <h3>Office Bearers</h3>
-      <div class="committee-grid reveal-stagger">
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.08 PM.jpeg" alt="Sri T. Nagesh Babu"></div></div>
-          <div class="member-info"><div class="m-name">Sri T. Nagesh Babu</div><div class="m-role">Treasurer</div></div>
-        </div>
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.12 PM.jpeg" alt="Sri G. Ravindra Reddy"></div></div>
-          <div class="member-info"><div class="m-name">Sri G. Ravindra Reddy</div><div class="m-role">Organizing Secretary</div></div>
-        </div>
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.14 PM.jpeg" alt="Smt. Y. Padmavathi"></div></div>
-          <div class="member-info"><div class="m-name">Smt. Y. Padmavathi</div><div class="m-role">District Secretary, Krishna</div></div>
-        </div>
-        <div class="member-card">
-          <div class="avatar-ring"><div class="avatar-core"><img src="images/WhatsApp Image 2026-07-27 at 3.49.15 PM.jpeg" alt="Sri D. Suresh Kumar"></div></div>
-          <div class="member-info"><div class="m-name">Sri D. Suresh Kumar</div><div class="m-role">District Secretary, Visakhapatnam</div></div>
-        </div>
-      </div>
+    <div class="Our Team" style="margin-top:70px;">
+      <h3>Our Team</h3>
+    
     </div>
   </section>
 </main>
@@ -700,6 +692,12 @@ footer ul li a:hover{ color:var(--marigold); }
     <p class="committee-note reveal">Fresh perspectives and updates from our members, committees, and programs.</p>
 
     <div class="blog-grid reveal-stagger">
+      <article class="blog-card">
+        <p class="blog-meta">APTPIEA seeks • 29 jul 2026</p>
+        <h3>Education Laws need Implementation, not just promises</h3>
+        <p>Indian education system stands at critical cross roads.Despites decates of reforms constitutional provisions..</p>
+        <a href="/images/blog.jpeg" target="_blank" rel="noopener noreferrer" class="blog-link">Read more</a>
+      </article>
       <article class="blog-card">
         <p class="blog-meta">APTPIEA seeks • 09 nov 2025</p>
         <h3>APTPIEA seeks release of pending fee reimbursement funds in Andhra Pradesh</h3>
@@ -800,11 +798,12 @@ footer ul li a:hover{ color:var(--marigold); }
         <img src="images/Apstepiea-logo.jpeg" alt="APSTPIEA logo" style="width:56px;height:56px;object-fit:cover;border-radius:50%;border:2px solid rgba(238,241,236,0.2);flex-shrink:0;">
         <div>
           <div style="font-family:var(--mono); font-size:0.86rem; letter-spacing:0.06em;">APSTPIEA</div>
-          <p>The collective voice of employees across Andhra Pradesh's technical and professional institutions.</p>
+          <p>Andhra Pradesh Schools & Technical & Professional Institutions Employees Association</p>
+          <p>(APSTPIEA)</p>
         </div>
       </div>
       <div>
-        <h4>Navigate</h4>
+        <h4>Pages</h4>
         <ul>
           <li><a href="#home" data-link>Home</a></li>
           <li><a href="#about" data-link>About</a></li>
@@ -822,7 +821,7 @@ footer ul li a:hover{ color:var(--marigold); }
         </ul>
       </div>
       <div>
-        <h4>Connect</h4>
+        <h4>Contact</h4>
         <ul>
           <li><a href="mailto:info@apstpiea.org">info@apstpiea.org</a></li>
           <li><a href="tel:+919000840682">+91 9000840682</a></li>
@@ -866,7 +865,9 @@ function route(){
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#'+id));
   window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
   document.getElementById('navLinks').classList.remove('open');
+  const _navToggle = document.getElementById('navToggle');
   document.getElementById('navToggle').classList.remove('open');
+  if(_navToggle) _navToggle.setAttribute('aria-expanded','false');
   observeReveals();
 }
 window.addEventListener('hashchange', route);
@@ -875,10 +876,13 @@ document.addEventListener('DOMContentLoaded', route);
 /* mobile nav toggle */
 const navToggle = document.getElementById('navToggle');
 const navLinksEl = document.getElementById('navLinks');
-navToggle.addEventListener('click', () => {
-  navToggle.classList.toggle('open');
-  navLinksEl.classList.toggle('open');
-});
+if(navToggle){
+  navToggle.addEventListener('click', () => {
+    const isOpen = navToggle.classList.toggle('open');
+    navLinksEl.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+}
 
 /* ============ SCROLL REVEAL ============ */
 let observer;
